@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new user</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/?id={id}(id=${user.getId()})}" th:object="${user}">
+    <br>
+    <a th:href="@{/logout}">logout</a>
+</form>
+</body>
+</html>
