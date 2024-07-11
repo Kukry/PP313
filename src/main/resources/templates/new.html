@@ -18,6 +18,10 @@
     <input type="text" th:field="*{age}" id="age">
     <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">error</div>
     <br>
+    <label for="email">Enter email: </label>
+    <input type="text" th:field="*{email}" id="email">
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error</div>
+    <br>
     <label for="name">Enter password: </label>
     <input type="text" th:field="*{password}" id="password">
     <br>

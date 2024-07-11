@@ -27,4 +27,13 @@ public class UserDetailService implements UserDetailsService {
         }
         return user.get();
     }
+
+//    @Override
+//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//        Optional<User> user = userFindByName.findByName(email);
+//        if (user.isEmpty()) {
+//            throw new UsernameNotFoundException("Пользователь не найден");
+//        }
+//        return new UserDetail(user.get());
+//    }
 }

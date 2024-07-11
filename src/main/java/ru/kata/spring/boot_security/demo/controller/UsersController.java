@@ -1,15 +1,20 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.model.Role;
+import ru.kata.spring.boot_security.demo.security.UserDetail;
 import ru.kata.spring.boot_security.demo.service.UserService;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.validation.Valid;
-import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -22,13 +27,22 @@ public class UsersController {
         return "start";
     }
     @GetMapping("/admin")
-    public String getAdminPage(Model model, Principal principal) {
+    public String getAdminPage(Model model, Authentication auth) {
+        UserDetail userDetail = (UserDetail) auth.getPrincipal();
+        model.addAttribute("loginBy", auth.getName());
+        model.addAttribute("roles", AuthorityUtils.authorityListToSet(auth.getAuthorities()));
         model.addAttribute("users", userService.allUsers());
+        model.addAttribute("user_log", userService.showUser(userDetail.getUser().getId()));
+        model.addAttribute("newUser", new User());
+        model.addAttribute("roleAdmin", Role.ROLE_ADMIN.name());
+        model.addAttribute("roleUser", Role.ROLE_USER.name());
         return "admin";
     }
 
     @GetMapping("/user")
-    public String showUser(@RequestParam(value = "id", defaultValue = "0") int id, Model model) {
+    public String showUser(@RequestParam(value = "id", defaultValue = "0") int id, Model model, Authentication auth) {
+        model.addAttribute("loginBy", auth.getName());
+        model.addAttribute("roles", AuthorityUtils.authorityListToSet(auth.getAuthorities()));
         model.addAttribute("user", userService.showUser(id));
         return "user";
     }

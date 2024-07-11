@@ -41,6 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/new", "/admin", "/edit", "/delete", "/update").hasRole("ADMIN")
                 .and()
                 .formLogin()
+                //.usernameParameter("email")
                 .successHandler(successUserHandler)
                 .permitAll()
                 .and()

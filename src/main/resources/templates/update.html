@@ -6,8 +6,6 @@
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/?id={id}(id=${user.getId()})}" th:object="${user}">
-    <br>
-    <a th:href="@{/logout}">logout</a>
 </form>
 </body>
 </html>
