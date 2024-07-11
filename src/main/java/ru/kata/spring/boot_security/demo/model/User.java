@@ -1,10 +1,7 @@
 package ru.kata.spring.boot_security.demo.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Set;
 
 @Entity
@@ -31,6 +28,11 @@ public class User {
     @Column(name = "age")
     private int age;
 
+    @NotBlank(message = "Email не может быть пустой")
+    @Email(message = "Email должен быть валидным")
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "password")
     private String password;
 
@@ -42,10 +44,13 @@ public class User {
     public User() {
     }
 
-    public User(String name, String surname, int age) {
-        this.age = age;
-        this.surname = surname;
+    public User(String name, String surname, int age, String email, String password, Set<Role> roles) {
         this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
     }
 
     public int getId() {
@@ -94,5 +99,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public @NotBlank(message = "Email не может быть пустой") @Email(message = "Email должен быть валидным") String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@NotBlank(message = "Email не может быть пустой") @Email(message = "Email должен быть валидным") String email) {
+        this.email = email;
     }
 }

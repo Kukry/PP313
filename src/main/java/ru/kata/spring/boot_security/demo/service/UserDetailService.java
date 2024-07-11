@@ -22,11 +22,19 @@ public class UserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("Username from loadUser = " + username);
         Optional<User> user = userFindByName.findByName(username);
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("Пользователь не найден");
         }
         return new UserDetail(user.get());
     }
+
+//    @Override
+//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//        Optional<User> user = userFindByName.findByName(email);
+//        if (user.isEmpty()) {
+//            throw new UsernameNotFoundException("Пользователь не найден");
+//        }
+//        return new UserDetail(user.get());
+//    }
 }
