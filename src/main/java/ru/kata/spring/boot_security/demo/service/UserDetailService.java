@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.repository.UserFindByName;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.security.UserDetail;
 
 import java.util.Optional;
 
@@ -22,11 +21,10 @@ public class UserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("Username from loadUser = " + username);
         Optional<User> user = userFindByName.findByName(username);
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("Пользователь не найден");
         }
-        return new UserDetail(user.get());
+        return user.get();
     }
 }
