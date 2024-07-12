@@ -35,7 +35,6 @@
 <div class="container-fluid">
     <div class="row all-height">
         <div class="col pe-0 ps-0 pt-2">
-
             <nav>
                 <div class="nav nav-pills flex-column" id="nav-tab" role="tablist">
                     <button class="nav-link active text-start" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Admin</button>
@@ -132,7 +131,7 @@
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                            <a th:href="@{/edit?id={id}(id=${user.getId()})}">
+                                                                            <a th:href="@{/update?id={id}(id=${user.getId()})}">
                                                                                 <button type="button" class="btn btn-primary">Edit</button>
                                                                             </a>
                                                                         </div>

@@ -8,10 +8,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -37,6 +36,12 @@ public class User implements UserDetails {
     @Column(name = "age")
     private int age;
 
+    @NotBlank(message = "Email не может быть пустой")
+    @Email(message = "Email должен быть валидным")
+    @Column(name = "email")
+    private String email;
+
+
     @Column(name = "password")
     private String password;
 
@@ -45,13 +50,24 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+    public @NotBlank(message = "Email не может быть пустой") @Email(message = "Email должен быть валидным") String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@NotBlank(message = "Email не может быть пустой") @Email(message = "Email должен быть валидным") String email) {
+        this.email = email;
+    }
+
     public User() {
     }
 
-    public User(String name, String surname, int age) {
-        this.age = age;
-        this.surname = surname;
+    public User(String name, String surname, int age, String email, String password, Set<Role> roles) {
         this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
     }
 
     @Override
