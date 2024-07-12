@@ -5,35 +5,30 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.kata.spring.boot_security.demo.repository.UserFindByName;
+import org.springframework.transaction.annotation.Transactional;
+import ru.kata.spring.boot_security.demo.repository.UserFindBy;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.Optional;
 
 @Service
 public class UserDetailService implements UserDetailsService {
-    private final UserFindByName userFindByName;
+    private final UserFindBy userFindBy;
 
     @Autowired
-    public UserDetailService(UserFindByName userFindByName) {
-        this.userFindByName = userFindByName;
+    public UserDetailService(UserFindBy userFindBy) {
+        this.userFindBy = userFindBy;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userFindByName.findByName(username);
+    @Transactional
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        System.out.println("email = " + email);
+        Optional<User> user = userFindBy.findByEmail(email);
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("Пользователь не найден");
         }
+
         return user.get();
     }
-
-//    @Override
-//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//        Optional<User> user = userFindByName.findByName(email);
-//        if (user.isEmpty()) {
-//            throw new UsernameNotFoundException("Пользователь не найден");
-//        }
-//        return new UserDetail(user.get());
-//    }
 }

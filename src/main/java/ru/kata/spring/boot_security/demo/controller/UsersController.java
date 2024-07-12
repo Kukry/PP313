@@ -19,11 +19,7 @@ public class UsersController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public String getStartPage() {
-        return "start";
-    }
-    @GetMapping("/admin")
+       @GetMapping("/admin")
     public String getAdminPage(Model model, Authentication auth) {
         User user = (User) auth.getPrincipal();
         model.addAttribute("loginBy", auth.getName());
@@ -64,7 +60,7 @@ public class UsersController {
         model.addAttribute("user", userService.showUser(id));
         model.addAttribute("roleAdmin", Role.ROLE_ADMIN.name());
         model.addAttribute("roleUser", Role.ROLE_USER.name());
-        return "/edit";
+        return "edit";
     }
 
     @PostMapping("/update")

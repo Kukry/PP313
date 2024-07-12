@@ -98,8 +98,8 @@
                                           th:text="${#strings.substring(role, 5).replace(']','')} + ' '">roles</span>
                                                         </td>
                                                         <td>
-                                                            <a class="btn btn-info btn-sm text-white" data-bs-toggle="modal" th:data-bs-target="${'#edituser'+user.id}">Edit</a>
-                                                            <div class="modal fade" th:id="${'edituser'+user.id}" tabindex="-1" aria-labelledby="edit" aria-hidden="true">
+                                                            <a class="btn btn-info btn-sm text-white" data-bs-toggle="modal" th:attr="data-bs-target=${'#edituser'+user.id}">Edit</a>
+                                                            <div class="modal fade" th:id="'edituser'+${user.getId()}" tabindex="-1" aria-labelledby="edit" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -108,32 +108,32 @@
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <div class="col-6 mx-auto">
-                                                                            <form class="text-center">
+                                                                            <form class="text-center" th:action="@{/update}" method="post">
                                                                                 <strong>ID</strong>
-                                                                                <input class="form-control mb-3" type="number" th:value="${user.getId}" id="idEdit" readonly>
+                                                                                <input class="form-control mb-3" type="number" th:value="${user.getId}" th:name="id" id="idEdit" readonly>
                                                                                 <strong>Name</strong>
-                                                                                <input class="form-control mb-3" type="text" th:value="${user.name}" id="nameEdit">
+                                                                                <input class="form-control mb-3" type="text" th:value="${user.name}" th:name="name" id="nameEdit">
                                                                                 <strong>Surname</strong>
-                                                                                <input class="form-control mb-3" type="text" th:value="${user.surname}" id="surnameEdit">
+                                                                                <input class="form-control mb-3" type="text" th:value="${user.surname}" th:name="surname" id="surnameEdit">
                                                                                 <strong>Age</strong>
-                                                                                <input class="form-control mb-3" type="number" th:value="${user.age}" id="ageEdit">
+                                                                                <input class="form-control mb-3" type="number" th:value="${user.age}" th:name="age" id="ageEdit">
                                                                                 <strong>Email</strong>
-                                                                                <input class="form-control mb-3" type="email" th:value="${user.email}" id="emailEdit">
+                                                                                <input class="form-control mb-3" type="email" th:value="${user.email}" th:name="email" id="emailEdit">
                                                                                 <strong>Password</strong>
                                                                                 <input class="form-control mb-3" type="text">
                                                                                 <strong>Role</strong>
-                                                                                <select multiple class="form-control form-control-sm mb-3" size="2">
+                                                                                <select multiple class="form-control form-control-sm mb-3" th:name="roles" size="2">
                                                                                     <option th:value="${roleAdmin}">ADMIN</option>
                                                                                     <option th:value="${roleUser}">USER</option>
                                                                                 </select>
+
+                                                                                <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-primary">Edit</button>
+                                                                                </div>
                                                                             </form>
-                                                                            </div>
+
                                                                         </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                            <a th:href="@{/update?id={id}(id=${user.getId()})}">
-                                                                                <button type="button" class="btn btn-primary">Edit</button>
-                                                                            </a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
