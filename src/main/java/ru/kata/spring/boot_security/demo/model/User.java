@@ -50,14 +50,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-    public @NotBlank(message = "Email не может быть пустой") @Email(message = "Email должен быть валидным") String getEmail() {
-        return email;
-    }
-
-    public void setEmail(@NotBlank(message = "Email не может быть пустой") @Email(message = "Email должен быть валидным") String email) {
-        this.email = email;
-    }
-
     public User() {
     }
 
@@ -148,4 +140,13 @@ public class User implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public @NotBlank(message = "Email не может быть пустой") @Email(message = "Email должен быть валидным") String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@NotBlank(message = "Email не может быть пустой") @Email(message = "Email должен быть валидным") String email) {
+        this.email = email;
+    }
+
 }
