@@ -9,18 +9,18 @@
 <br>
 <div th:each="user : ${users}">
     <label th:text="${user.getId()}">id</label>
-    <a th:href="@{/user?id={id}(id=${user.getId()})}" th:text="${user.getName()}">User</a>
+    <a th:href="@{/admin/userInfo?id={id}(id=${user.getId()})}" th:text="${user.getName()}">User</a>
     <label th:text="${user.getSurname()}">surname</label>
     <label th:text="${user.getAge()}">age</label>
     <label th:text="${user.getRoles()}">roles</label>
-    <a th:href="@{/edit?id={id}(id=${user.getId()})}">Edit</a>
-    <a th:href="@{/delete?id={id}(id=${user.getId()})}">Delete</a>
+    <a th:href="@{/admin/edit?id={id}(id=${user.getId()})}">Edit</a>
+    <a th:href="@{/admin/delete?id={id}(id=${user.getId()})}">Delete</a>
     <hr>
 </div>
 <br>
 <hr>
 <div>
-    <a th:href="@{/new}">Create new user</a>
+    <a th:href="@{/admin/new}">Create new user</a>
     <br>
     <a th:href="@{/logout}">logout</a>
 </div>
