@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 //-----------функция получения данных о пользователе------------------------
 async function userData() {
-    const response = await fetch("/api/auth")
+    const response = await fetch("/api/user/auth")
     return await response.json()
 }
 

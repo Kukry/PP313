@@ -1,5 +1,5 @@
 async function sendDataEditUser(user) {
-    await fetch("/api/users" ,
+    await fetch("/api/admin/" ,
         {method:"PUT", headers: {"Content-type": "application/json"}, body: JSON.stringify(user)} )
 }
 

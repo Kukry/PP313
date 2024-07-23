@@ -1,5 +1,5 @@
 async function getUserDataById(userId) {
-    const response = await fetch(`/api/users/${userId}`)
+    const response = await fetch(`/api/user/${userId}`)
     return await response.json()
 }
 

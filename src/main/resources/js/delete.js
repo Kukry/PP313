@@ -1,5 +1,5 @@
 async function deleteUserData(userId){
-    await fetch(`/api/users/${userId}`, {method: "DELETE"})
+    await fetch(`/api/admin/${userId}`, {method: "DELETE"})
 }
 
 

@@ -1,13 +1,13 @@
 //-----------функция получения данных о всех пользователях------------------------
 async function dataAboutAllUsers() {
-    const response = await fetch("/api/users")
+    const response = await fetch("/api/admin/")
     return await response.json()
 }
 //--------------------------------------------------------------------------------
 
 //-----------функция получения данных о пользователе------------------------
 async function dataAboutCurrentUser() {
-    const response = await fetch("/api/auth")
+    const response = await fetch("/api/user/auth")
     return await response.json()
 }
 //--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ async function fillTableAboutCurrentUser(){
             <td>${currentUser.name}</td>
             <td>${currentUser.surname}</td>
             <td>${currentUser.age}</td>
-            <td>${currentUser.password}</td>
+            <td>${currentUser.email}</td>
             <td>${shortRoles.join(' ')}</td>
         </tr>`
     currentUserTable.innerHTML = currentUserTableHTML
